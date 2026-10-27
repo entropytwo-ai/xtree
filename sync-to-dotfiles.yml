@@ -1,0 +1,79 @@
+name: Sync xtree.sh to dotfiles-nixish
+
+# Pushes the latest xtree.sh from this repo to
+# entropytwo-ai/dotfiles-nixish:scripts/xtree.sh as a direct commit.
+#
+# Requires repo secret DOTFILES_SYNC_TOKEN: a fine-grained PAT with
+# "Contents: Read and write" on entropytwo-ai/dotfiles-nixish.
+
+on:
+  push:
+    branches: [main]
+    paths: [xtree.sh]
+  workflow_dispatch:
+
+concurrency:
+  group: sync-to-dotfiles
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  TARGET_REPO: entropytwo-ai/dotfiles-nixish
+  TARGET_PATH: scripts/xtree.sh
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for sync token
+        env:
+          TOKEN: ${{ secrets.DOTFILES_SYNC_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Secret DOTFILES_SYNC_TOKEN is not set (Settings > Secrets and variables > Actions)."
+            exit 1
+          fi
+
+      - name: Check out xtree
+        uses: actions/checkout@v4
+        with:
+          path: xtree
+
+      - name: Check out dotfiles-nixish
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.TARGET_REPO }}
+          token: ${{ secrets.DOTFILES_SYNC_TOKEN }}
+          path: dotfiles
+          fetch-depth: 1
+
+      - name: Copy xtree.sh
+        run: |
+          install -Dm755 xtree/xtree.sh "dotfiles/${TARGET_PATH}"
+
+      - name: Commit and push if changed
+        working-directory: dotfiles
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$TARGET_PATH"
+          if git diff --cached --quiet; then
+            echo "dotfiles-nixish already up to date; nothing to commit."
+            exit 0
+          fi
+          short_sha="${GITHUB_SHA::7}"
+          git commit \
+            -m "chore(xtree): sync scripts/xtree.sh from xtree@${short_sha}" \
+            -m "Source: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+          # Retry with rebase in case dotfiles-nixish moved in the meantime.
+          for attempt in 1 2 3; do
+            if git push origin HEAD; then
+              exit 0
+            fi
+            echo "Push failed (attempt ${attempt}); rebasing and retrying..."
+            git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)"
+          done
+          echo "::error::Failed to push to ${TARGET_REPO} after 3 attempts."
+          exit 1
