@@ -39,7 +39,7 @@ xtree [options] /path/to/directory
 | `-u` | Show `owner::group` |
 | `-a` | Include hidden files and directories |
 | `-C file` | Write the output to a CSV file instead of the terminal |
-| `-s scheme` | Colour scheme: `default`, `alternative`, `christmas`, `halloween` |
+| `-s scheme` | Colour scheme: `default`, `alternative`, `christmas`, `halloween`, `ghost` |
 | `-r` | Pick a random colour scheme |
 | `-A` | Show ACL entries for paths that have them (a `+` in the permissions; use with `-p`) |
 
