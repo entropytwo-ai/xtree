@@ -8,45 +8,34 @@ admin@kiosk:~/.dotfiles-nixish$ xtree -L 2 -ptuaf -r .
  /  \
 /____\
 Permissions Owner::Group Size Last Modified Name
-drwxr-xr-x admin::admin 548K 2026-10-27 11:58:05 .
+drwxr-xr-x admin::admin 584K 2026-10-27 11:58:05 .
 ├── -rw-r--r-- admin::admin 12K 2026-10-27 11:58:05 CHANGELOG.md
 ├── -rw-r--r-- admin::admin 36K 2026-10-27 11:58:05 LICENSE
 ├── -rw-r--r-- admin::admin 20K 2026-10-27 11:58:05 README.md
 ├── drwxr-xr-x admin::admin 12K 2026-10-27 11:58:05 config
 │   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 bashrc_append.sh
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 zshrc_append.sh
-│   ├── Error: ./config/.[!.]* does not exist
-│   └── Error: ./config/..?* does not exist
+│   └── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 zshrc_append.sh
 ├── -rwxr-xr-x admin::admin 68K 2026-10-27 11:58:05 install.sh
 ├── drwxr-xr-x admin::admin 8.0K 2026-10-27 11:58:05 packages
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 package_list.txt
-│   ├── Error: ./packages/.[!.]* does not exist
-│   └── Error: ./packages/..?* does not exist
-├── drwxr-xr-x admin::admin 84K 2026-10-27 13:48:01 scripts
+│   └── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 package_list.txt
+├── drwxr-xr-x admin::admin 84K 2026-10-27 14:10:17 scripts
 │   ├── -rw-r--r-- admin::admin 64K 2026-10-27 11:58:05 system-setup.sh
-│   ├── -rwxr-xr-x admin::admin 16K 2026-10-27 13:48:01 xtree.sh
-│   ├── Error: ./scripts/.[!.]* does not exist
-│   └── Error: ./scripts/..?* does not exist
-├── drwxr-xr-x admin::admin 304K 2026-10-27 13:48:01 .git
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 13:48:01 FETCH_HEAD
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 HEAD
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 13:48:01 ORIG_HEAD
-│   ├── drwxr-xr-x admin::admin 4.0K 2026-10-27 11:58:04 branches
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 config
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:04 description
-│   ├── drwxr-xr-x admin::admin 64K 2026-10-27 11:58:04 hooks
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 13:48:01 index
-│   ├── drwxr-xr-x admin::admin 12K 2026-10-27 11:58:05 info
-│   ├── drwxr-xr-x admin::admin 36K 2026-10-27 11:58:05 logs
-│   ├── drwxr-xr-x admin::admin 120K 2026-10-27 13:48:01 objects
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 packed-refs
-│   ├── drwxr-xr-x admin::admin 32K 2026-10-27 11:58:05 refs
-│   ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 shallow
-│   ├── Error: ./.git/.[!.]* does not exist
-│   └── Error: ./.git/..?* does not exist
-└── Error: ./..?* does not exist
-
-
+│   └── -rwxr-xr-x admin::admin 16K 2026-10-27 14:10:17 xtree.sh
+└── drwxr-xr-x admin::admin 340K 2026-10-27 14:10:17 .git
+    ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 14:10:17 FETCH_HEAD
+    ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 HEAD
+    ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 14:06:07 ORIG_HEAD
+    ├── drwxr-xr-x admin::admin 4.0K 2026-10-27 11:58:04 branches
+    ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 config
+    ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:04 description
+    ├── drwxr-xr-x admin::admin 64K 2026-10-27 11:58:04 hooks
+    ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 14:10:17 index
+    ├── drwxr-xr-x admin::admin 12K 2026-10-27 11:58:05 info
+    ├── drwxr-xr-x admin::admin 36K 2026-10-27 11:58:05 logs
+    ├── drwxr-xr-x admin::admin 156K 2026-10-27 14:10:17 objects
+    ├── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 packed-refs
+    ├── drwxr-xr-x admin::admin 32K 2026-10-27 11:58:05 refs
+    └── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 shallow
 ```
 
 ## Requirements
