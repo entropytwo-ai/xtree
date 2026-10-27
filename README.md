@@ -38,6 +38,18 @@ drwxr-xr-x admin::admin 584K 2026-10-27 11:58:05 .
     └── -rw-r--r-- admin::admin 4.0K 2026-10-27 11:58:05 shallow
 ```
 
+---
+
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Install](#install)
+- [Usage](#usage)
+- [Relationship to dotfiles-nixish](#relationship-to-dotfiles-nixish)
+- [License](#license)
+
+---
+
 ## Requirements
 
 - `bash`, plus the standard coreutils: `ls`, `du`, `stat`, `awk`, `sed`, `cut`, `tr`. It uses `stat -c`, which is GNU stat syntax.
