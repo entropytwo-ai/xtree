@@ -22,12 +22,16 @@ A Bash script for \*nix that combines the functions of `tree`, `ls -l`, `du`, an
 - `getfacl` (from the `acl` package). You only need it for `-A`.
 - `tput` is optional. If it's missing, the script falls back to raw ANSI colour codes.
 
+<sub>[↑ Back to contents](#table-of-contents)</sub>
+
 ## Install
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/entropytwo-ai/xtree/main/xtree.sh -o ~/.local/bin/xtree
 chmod +x ~/.local/bin/xtree
 ```
+
+<sub>[↑ Back to contents](#table-of-contents)</sub>
 
 ## Usage
 
@@ -58,12 +62,18 @@ xtree -fptuA -C report.csv /srv # full detail exported to CSV
 
 To turn colours off, set `NO_COLOR=1` or `TERM=dumb`.
 
+<sub>[↑ Back to contents](#table-of-contents)</sub>
+
 ## Relationship to dotfiles-nixish
 
 This repo is the main place where xtree is developed. A copy lives in [`dotfiles-nixish`](https://github.com/entropytwo-ai/dotfiles-nixish) at `scripts/xtree.sh`, where `nix/xtree.nix` packages it. **That copy is kept in sync automatically.** Each push to `main` here that changes `xtree.sh` runs [`.github/workflows/sync-to-dotfiles.yml`](.github/workflows/sync-to-dotfiles.yml), which commits the new version straight to dotfiles-nixish's `main`. Make changes here, not in dotfiles-nixish, because the sync will overwrite edits made there.
 
 The workflow needs a repository secret named `DOTFILES_SYNC_TOKEN`. It must be a fine-grained personal access token with **Contents: Read and write** on `entropytwo-ai/dotfiles-nixish`. You can also run the sync by hand from the Actions tab (*Run workflow*).
 
+<sub>[↑ Back to contents](#table-of-contents)</sub>
+
 ## License
 
 GPL-3.0. See [LICENSE](LICENSE).
+
+<sub>[↑ Back to contents](#table-of-contents)</sub>
