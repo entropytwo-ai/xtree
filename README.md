@@ -2,7 +2,7 @@
 
 A Bash script for \*nix that combines the functions of `tree`, `ls -l`, `du`, and `getfacl`. It shows a colourised directory tree with per-entry sizes and can also show permissions, owner/group, modification times and ACLs. It can export the result to CSV.
 
-![xtree -L 2 -ptuaf -r . showing the ghost theme](docs/screenshot.png)
+![xtree -L 2 -ptuaf -r . showing the ghost theme](screenshot.png)
 
 ---
 
