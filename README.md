@@ -18,7 +18,8 @@ A Bash script for \*nix that combines the functions of `tree`, `ls -l`, `du`, an
 
 ## Requirements
 
-- `bash`, plus the standard coreutils: `ls`, `du`, `stat`, `awk`, `sed`, `cut`, `tr`. It uses `stat -c`, which is GNU stat syntax.
+- `bash` 4.4 or newer, GNU `find` (findutils) and GNU coreutils (`du`, `ls`, `sort`, `xargs`). It reads the whole tree with one `find` and one `du` pass, so it stays fast on large folders.
+- `git` is optional. You only need it for `-g`.
 - `getfacl` (from the `acl` package). You only need it for `-A`.
 - `tput` is optional. If it's missing, the script falls back to raw ANSI colour codes.
 
@@ -50,7 +51,13 @@ xtree [options] /path/to/directory
 | `-C file` | Write the output to a CSV file instead of the terminal |
 | `-s scheme` | Colour scheme: `default`, `alternative`, `christmas`, `halloween`, `ghost` |
 | `-r` | Pick a random colour scheme |
-| `-A` | Show ACL entries for paths that have them (a `+` in the permissions; use with `-p`) |
+| `-A` | Show ACL entries for paths that have them (a `+` in the permissions) |
+| `-o key` | Sort by `name` (default), `size` (largest first), `time` (newest first), `type` (by extension) or `none` |
+| `-O` | Reverse the sort order |
+| `-D` | List directories before files |
+| `-H` | Size heat map: colours sizes by their share of the parent folder and adds a `%` column with a bar |
+| `-g` | Git status next to each entry (`M`, `A`, `??`, …; `*` = folder contains changes). Only shown inside a git repo |
+| `--color=WHEN` | `auto` (default: colours only on a terminal, plain text when piped), `always` or `never` |
 
 Examples:
 
@@ -58,9 +65,16 @@ Examples:
 xtree -L 2 /var                 # directory sizes, two levels deep
 xtree -fpu -L 1 ~               # files too, with permissions and owner::group
 xtree -fptuA -C report.csv /srv # full detail exported to CSV
+xtree -fDH -o size -L 1 /var    # what is using the space, biggest first
+xtree -fg -L 2 .                # which files in this repo have changed
+xtree -f --color=always . | less -R   # keep colours when paging
 ```
 
-To turn colours off, set `NO_COLOR=1` or `TERM=dumb`.
+Each run ends with a summary such as `4 directories, 12 files, 1.0M total`.
+
+Colours turn off automatically when the output isn't a terminal. You can also turn them off with `NO_COLOR=1`, `TERM=dumb` or `--color=never`.
+
+Symlinks to folders are listed, but xtree doesn't descend into them, so a link loop can't make it run forever.
 
 <sub>[↑ Back to contents](#table-of-contents)</sub>
 
