@@ -72,7 +72,7 @@ xtree -f --color=always . | less -R   # keep colours when paging
 
 Each run ends with a summary such as `4 directories, 12 files, 1.0M total`.
 
-The `default` scheme copies [eza](https://github.com/eza-community/eza)'s default colours: file kinds, file types by name and extension (images, video, music, archives, documents, source and more), per-character permissions, sizes coloured by magnitude, owner/group, git status and dim tree lines. The one deliberate change is the timestamp: it uses a brighter sky blue instead of eza's dark blue so it is easier to read. Like eza, it honours `LS_COLORS` and `EZA_COLORS` (for example `EZA_COLORS="da=31:*.txt=35"`; use `reset` to drop the built-in colours).
+The `default` scheme copies [eza](https://github.com/eza-community/eza)'s default colours: file kinds, file types by name and extension (images, video, music, archives, documents, source and more), per-character permissions, sizes coloured by magnitude, owner/group, git status and dim tree lines. The one deliberate change is the timestamp: it uses the lighter blue `38;5;75` (#5fafff) so it is easier to read. Like eza, it honours `LS_COLORS` and `EZA_COLORS` (for example `EZA_COLORS="da=31:*.txt=35"`; use `reset` to drop the built-in colours).
 
 Colours turn off automatically when the output isn't a terminal. You can also turn them off with `NO_COLOR=1`, `TERM=dumb` or `--color=never`.
 
