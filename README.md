@@ -19,7 +19,7 @@ A Bash script for \*nix that combines the functions of `tree`, `ls -l`, `du`, an
 ## Requirements
 
 - `bash` 4.4 or newer, GNU `find` (findutils) and GNU coreutils (`du`, `ls`, `sort`, `xargs`). It reads the whole tree with one `find` and one `du` pass, so it stays fast on large folders.
-- `git` is optional. You only need it for `-g`.
+- `git` is optional. You only need it for `-G`.
 - `getfacl` (from the `acl` package). You only need it for `-A`.
 - `tput` is optional. If it's missing, the script falls back to raw ANSI colour codes.
 
@@ -46,7 +46,8 @@ xtree [options] /path/to/directory
 | `-L depth` | Maximum traversal depth (default `3`) |
 | `-p` | Show permissions |
 | `-t` | Show last-modified date/time |
-| `-u` | Show `owner::group` |
+| `-u` | Show the owner (user) column |
+| `-g` | Show the group column |
 | `-a` | Include hidden files and directories |
 | `-C file` | Write the output to a CSV file instead of the terminal |
 | `-s scheme` | Colour scheme: `default` (eza-style), `alternative`, `christmas`, `halloween`, `ghost` |
@@ -56,17 +57,17 @@ xtree [options] /path/to/directory
 | `-O` | Reverse the sort order |
 | `-D` | List directories before files |
 | `-H` | Size heat map: colours sizes by their share of the parent folder and adds a `%` column with a bar |
-| `-g` | Git status next to each entry (`M`, `A`, `??`, …; `*` = folder contains changes). Only shown inside a git repo |
+| `-G` | Git status next to each entry (`M`, `A`, `??`, …; `*` = folder contains changes). Only shown inside a git repo |
 | `--color=WHEN` | `auto` (default: colours only on a terminal, plain text when piped), `always` or `never` |
 
 Examples:
 
 ```sh
 xtree -L 2 /var                 # directory sizes, two levels deep
-xtree -fpu -L 1 ~               # files too, with permissions and owner::group
-xtree -fptuA -C report.csv /srv # full detail exported to CSV
+xtree -fpug -L 1 ~              # files too, with permissions, owner and group
+xtree -fptugA -C report.csv /srv # full detail exported to CSV
 xtree -fDH -o size -L 1 /var    # what is using the space, biggest first
-xtree -fg -L 2 .                # which files in this repo have changed
+xtree -fG -L 2 .                # which files in this repo have changed
 xtree -f --color=always . | less -R   # keep colours when paging
 ```
 
