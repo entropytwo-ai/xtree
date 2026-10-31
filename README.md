@@ -24,7 +24,7 @@ A Bash script for \*nix that combines the functions of `tree`, `ls -l`, `du`, an
 
 ## Requirements
 
-- `bash` 4.4 or newer, GNU `find` (findutils) and GNU coreutils (`du`, `ls`, `sort`, `xargs`). It reads the whole tree with one `find` and one `du` pass, so it stays fast on large folders.
+- `bash` 4.4 or newer, plus `find`, `du`, `stat`, `ls` and `xargs`. With GNU findutils/coreutils it reads the whole tree with one `find` and one `du` pass, so it stays fast on large folders. BusyBox (Alpine Linux) works too: xtree detects it and falls back to `find -print0` plus one batched `stat` call. On Alpine, `apk add bash` is the only extra package needed.
 - `git` is optional. You only need it for `-G`.
 - `getfacl` (from the `acl` package). You only need it for `-A`.
 - `tput` is optional. If it's missing, the script falls back to raw ANSI colour codes.
